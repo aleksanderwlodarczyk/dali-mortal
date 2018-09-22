@@ -123,8 +123,6 @@ GameObject:
   - component: {fileID: 338078381}
   - component: {fileID: 338078380}
   - component: {fileID: 338078379}
-  - component: {fileID: 338078378}
-  - component: {fileID: 338078377}
   m_Layer: 0
   m_Name: Display Camera
   m_TagString: MainCamera
@@ -132,45 +130,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &338078377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 338078376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 0}
---- !u!114 &338078378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 338078376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392840358f6ad4e99abc4390678155de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxNumberOfColors: 16581375
-  TestLength: 550
-  numberOfSkipedColors: 6
-  TestColor:
-    serializedVersion: 2
-    rgba: 1023
-  color1:
-    serializedVersion: 2
-    rgba: 11263
-  color2:
-    serializedVersion: 2
-    rgba: 22271
-  player: {fileID: 0}
-  tries: 0
-  testMat: {fileID: 2100000, guid: a9e3c091bec4097478ec40a19bd20317, type: 2}
-  colorHashTablePrefab: {fileID: 601008045}
 --- !u!81 &338078379
 AudioListener:
   m_ObjectHideFlags: 0
@@ -593,7 +552,6 @@ GameObject:
   - component: {fileID: 1592949269}
   - component: {fileID: 1592949268}
   - component: {fileID: 1592949273}
-  - component: {fileID: 1592949271}
   m_Layer: 0
   m_Name: Render Camera
   m_TagString: MainCamera
@@ -657,18 +615,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1592949271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1592949267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 0}
 --- !u!114 &1592949273
 MonoBehaviour:
   m_ObjectHideFlags: 0
