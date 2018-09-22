@@ -313,8 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf446606544a57b48abf6a342a866523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_X_Speed: 1
-  player_Y_Speed: 1
+  XY_Speed: 3
 --- !u!1 &907100887
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,4 +479,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 267419224}
   offset: {x: 0, y: 2, z: -10}
-  smoothSpeed: 0.125
+  smoothSpeed: 1

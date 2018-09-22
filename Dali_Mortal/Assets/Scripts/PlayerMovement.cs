@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public float player_X_Speed = 3f;
-    public float player_Y_Speed = 3f;
-
+    public float XY_Speed;
 
 	// Use this for initialization
 	void Start () {
@@ -15,10 +13,12 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-        float wantedPlayer_X = Input.GetAxis("Horizontal") * player_X_Speed;
-        float wantedPlayer_Y = Input.GetAxis("Vertical") * player_Y_Speed;
+        Rigidbody body = GetComponent<Rigidbody>();
+        body.interpolation = RigidbodyInterpolation.Interpolate;
+        float wantedPlayer_X = Input.GetAxis("Horizontal") * XY_Speed;
+        float wantedPlayer_Y = Input.GetAxis("Vertical") * XY_Speed;
 
-        transform.Translate(wantedPlayer_X,wantedPlayer_Y,0);
+        Vector3 wantedMoveVector = new Vector3(wantedPlayer_X, wantedPlayer_Y, 0);
+        transform.Translate(wantedMoveVector * Time.deltaTime);
 	}
 }
