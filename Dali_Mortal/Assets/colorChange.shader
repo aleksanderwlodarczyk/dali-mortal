@@ -4,7 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		//_PlayerSpeed ("playerSpeed", float2) {}
-		_ColorWaveList ("ColorAndWaveList", Vector4[]) {} 
+		_ColorWaveList ("ColorAndWaveList", c) {} 
 	}
 	SubShader
 	{
