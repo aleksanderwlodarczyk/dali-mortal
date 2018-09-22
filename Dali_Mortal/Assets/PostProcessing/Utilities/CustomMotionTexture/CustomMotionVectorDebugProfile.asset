@@ -3,7 +3,11 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_CorrespondingSourceObject: {fileID: 0}
+=======
+  m_PrefabParentObject: {fileID: 0}
+>>>>>>> aleksander
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -109,10 +113,17 @@ MonoBehaviour:
         texture: {fileID: 0}
         intensity: 3
   colorGrading:
+<<<<<<< HEAD
     m_Enabled: 1
     m_Settings:
       tonemapping:
         tonemapper: 1
+=======
+    m_Enabled: 0
+    m_Settings:
+      tonemapping:
+        tonemapper: 2
+>>>>>>> aleksander
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -120,6 +131,7 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
+<<<<<<< HEAD
         postExposure: 3
         temperature: 0
         tint: 0
@@ -128,12 +140,23 @@ MonoBehaviour:
         contrast: 1
       channelMixer:
         red: {x: 0.05, y: 0, z: 0}
+=======
+        postExposure: 0
+        temperature: 0
+        tint: 0
+        hueShift: 0
+        saturation: 1
+        contrast: 1
+      channelMixer:
+        red: {x: 1, y: 0, z: 0}
+>>>>>>> aleksander
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
       colorWheels:
         mode: 1
         log:
+<<<<<<< HEAD
           slope: {r: 1, g: 0.95356, b: 0.95356, a: 0}
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
@@ -141,6 +164,15 @@ MonoBehaviour:
           lift: {r: 1, g: 1, b: 1, a: 0}
           gamma: {r: 1, g: 1, b: 1, a: 0}
           gain: {r: 1, g: 1, b: 1, a: 0}
+=======
+          slope: {r: 0, g: 0, b: 0, a: 0}
+          power: {r: 0, g: 0, b: 0, a: 0}
+          offset: {r: 0, g: 0, b: 0, a: 0}
+        linear:
+          lift: {r: 0, g: 0, b: 0, a: 0}
+          gamma: {r: 0, g: 0, b: 0, a: 0}
+          gain: {r: 0, g: 0, b: 0, a: 0}
+>>>>>>> aleksander
       curves:
         master:
           curve:
