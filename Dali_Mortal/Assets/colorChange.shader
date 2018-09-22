@@ -3,6 +3,8 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_PlayerSpeed ("playerSpeed", float2) {}
+		_ColorWaveList ("ColorAndWaveList", Vector4[]) {}
 	}
 	SubShader
 	{
@@ -41,7 +43,7 @@
 
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, i.uv);
+				fixed4 col = tex2D(_MainTex, i.uv); //col to pixel
 				// just invert the colors
 				col.rgb = 1 - col.rgb;
 				return col;

@@ -26,11 +26,12 @@ public class ColorShiftScript2 : MonoBehaviour
 	void Start()
 	{
 		Vector3 VecColor = new Vector3(TestColor.r, TestColor.g, TestColor.b);
-
+		
 		if (colorHashTablePrefab)
 		{
 			//GenerateColorDictionary();
 			//colorHashTablePrefab.colorHashtable = colorTable;
+			//colorHashTablePrefab.Serialize();
 			colorHashTablePrefab.Deserialize();
 		}
 
@@ -46,9 +47,23 @@ public class ColorShiftScript2 : MonoBehaviour
 		//Texture TempTexture = source;
 		//source.colorBuffer
 		//TempTexture.
-		Graphics.Blit(source, destination, testMat);
+		//testMat.SetFloat("playerSpeed", player.currentVelocity);
+		//Graphics.Blit(source, destination, testMat);
+		//testMat.SetMatrix(Array"ColorHashTable", );
+		List<Vector4> list = new List<Vector4>();
+		ConvertHashtableToVectorArray(ref list);
+
+		testMat.SetVectorArray("ColorAndWaveList",list.ToArray());
+		Graphics.Blit(source, destination);//delete it later
 	}
 
+	void ConvertHashtableToVectorArray(ref List<Vector4> list)
+	{
+		foreach(KeyValuePair <Vector3, double> p in colorTable)
+		{
+			list.Add(new Vector4(p.Key.x, p.Key.y, p.Key.z, (float)p.Value));
+		}
+	}
 	void GenerateColorDictionary()
 	{
 		Vector3 CurrentColor = new Vector3(1.0f, 1.0f, 1.0f);
@@ -75,8 +90,9 @@ public class ColorShiftScript2 : MonoBehaviour
 				{
 					b = Index3;
 					Vector3 NewColor = new Vector3(r, g, b);
-			
-					string Hash = String.Format("{0}{1}{2}", X((int)NewColor.x) + NewColor.x, X((int)NewColor.y) + NewColor.y, X((int)NewColor.z) + NewColor.z);
+
+					//string Hash = String.Format("{0}{1}{2}", X((int)NewColor.x) + NewColor.x, X((int)NewColor.y) + NewColor.y, X((int)NewColor.z) + NewColor.z);
+					Vector3 Hash = NewColor;
 					++tries;
 					if (!colorTable.ContainsKey(Hash))
 					{
