@@ -14,23 +14,39 @@ public class PlayerSpeed : MonoBehaviour {
     Rigidbody rb;
     public float currentVelocity;
 
-    float defaultPlayerWidth = 1f;
+    public float defaultPlayerWidth = 1.87f;
 
     Vector3 scale;
+
+    public float defaultCameraFOW = 45;
+    public float cameraFOWConstant = 10f;
+    
+    private float currentCameraFOW;
+
+    public float minScale = 0.2f;
+
     void Start()
     {
         
         rb = GetComponent<Rigidbody>();
         currentVelocity = defaultSpeed;
-        scale = new Vector3(0.5f, 0.5f, -2f);
+        scale = new Vector3(0.5f, 0.5f, -1f);
+        currentCameraFOW = defaultCameraFOW;
     }
 
 
 	// Update is called once per frame
 	void Update () {
-        
-        
-        
+
+
+        //currentCameraFOW = (currentVelocity / defaultSpeed) * defaultCameraFOW;
+
+        currentCameraFOW = 2.33f * currentVelocity + 33.3f;
+
+        Camera.main.fieldOfView = currentCameraFOW;
+        // 1/1 * 45 
+        Debug.Log("FOW: " + Camera.main.fieldOfView);
+
         if (Input.GetKey("space"))
         {
             if (rb.velocity.z <= accVelo.z)
@@ -39,11 +55,13 @@ public class PlayerSpeed : MonoBehaviour {
                 currentVelo.z = Time.deltaTime * playerAcceleration;
                 rb.velocity += currentVelo;
                 
-                if (transform.localScale.x >= 0.2f) //Scaling object by speed
+                if (transform.localScale.x >= minScale) //Scaling object by speed
                 {
                     
                     transform.localScale -= Time.deltaTime * scale;
                 }
+                
+
             }
             
             
@@ -86,8 +104,6 @@ public class PlayerSpeed : MonoBehaviour {
         Debug.Log("Current velocity is: " + rb.velocity.z);
 
     }
-
-
 
 
 }

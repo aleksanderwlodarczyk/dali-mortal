@@ -10,8 +10,15 @@ public class SmoothCamera : MonoBehaviour {
     public Vector3 offset;
     public float smoothSpeed = 0.125f;
 
+
+    float changedFOW;
+
+    PlayerSpeed player;
+
 	void LateUpdate()
     {
+
+
         if (target)
         {
             
