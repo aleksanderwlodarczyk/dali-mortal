@@ -326,12 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd84c5fe9e18ce4d9d0d15bce1be324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 1
+  defaultSpeed: 5
   playerAcceleration: 5
   velo: {x: 0, y: 0, z: 5}
   currentVelo: {x: 0, y: 0, z: 1}
-  acceleration: {x: 0, y: 0, z: 2}
   accVelo: {x: 0, y: 0, z: 15}
+  currentVelocity: 0
 --- !u!1 &325306375
 GameObject:
   m_ObjectHideFlags: 0

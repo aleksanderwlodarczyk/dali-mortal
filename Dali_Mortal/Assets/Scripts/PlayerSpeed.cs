@@ -9,7 +9,6 @@ public class PlayerSpeed : MonoBehaviour {
 
     public Vector3 velo = new Vector3(0,0,1);
     public Vector3 currentVelo = new Vector3(0, 0, 1);
-    public Vector3 acceleration = new Vector3(0, 0, 2);
     public Vector3 accVelo = new Vector3(0, 0, 10); 
 
     Rigidbody rb;
@@ -33,21 +32,7 @@ public class PlayerSpeed : MonoBehaviour {
 	void Update () {
         
         
-        if(!Input.GetKey("space")){
-
-
-            if (rb.velocity.z > defaultSpeed)
-            {
-                Debug.Log("current velo is bigger than default speed");
-                currentVelo.z = Time.deltaTime * -playerAcceleration;
-                rb.velocity -= currentVelo;
-            }
-            
-                rb.velocity = velo;
-            
-            
-            Debug.Log("No space");
-        }
+        
         if (Input.GetKey("space"))
         {
             if (rb.velocity.z <= accVelo.z)
@@ -59,7 +44,23 @@ public class PlayerSpeed : MonoBehaviour {
             
             
         }
+        if (!Input.GetKey("space"))
+        { //If there's no space pushed
 
+
+            if (rb.velocity.z > velo.z) //If there's velocity higher than start velocity
+            {
+                Debug.Log("current velo is bigger than default speed");
+                currentVelo.z = -1 * Time.deltaTime * playerAcceleration;
+                rb.velocity += currentVelo;
+
+            }
+            else { 
+            rb.velocity = velo; //Translating the object with constant value
+        }
+            
+                    Debug.Log("No space");
+                }
         changeLength();
 
 
