@@ -14,17 +14,15 @@ public class PlayerSpeed : MonoBehaviour {
     Rigidbody rb;
     public float currentVelocity;
 
-    float defaultPlayerLength;
-    float defaultPlayerWidth;
+    float defaultPlayerWidth = 1f;
 
-    float playerLength;
-    float playerWidth;
-    
+    Vector3 scale;
     void Start()
     {
         
         rb = GetComponent<Rigidbody>();
         currentVelocity = defaultSpeed;
+        scale = new Vector3(0.5f, 0.5f, -2f);
     }
 
 
@@ -40,6 +38,12 @@ public class PlayerSpeed : MonoBehaviour {
                 Debug.Log("Space");
                 currentVelo.z = Time.deltaTime * playerAcceleration;
                 rb.velocity += currentVelo;
+                
+                if (transform.localScale.x >= 0.2f) //Scaling object by speed
+                {
+                    
+                    transform.localScale -= Time.deltaTime * scale;
+                }
             }
             
             
@@ -54,6 +58,11 @@ public class PlayerSpeed : MonoBehaviour {
                 currentVelo.z = -1 * Time.deltaTime * playerAcceleration;
                 rb.velocity += currentVelo;
 
+                if (transform.localScale.x <= defaultPlayerWidth) //Scaling object by speed
+                {
+                    
+                    transform.localScale += Time.deltaTime * scale;
+                }
             }
             else { 
             rb.velocity = velo; //Translating the object with constant value
