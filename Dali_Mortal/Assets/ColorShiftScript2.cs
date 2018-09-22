@@ -2,34 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorShiftScript2 : MonoBehaviour 
+public class ColorShiftScript2 : MonoBehaviour
 {
 
+	public Hashtable colorTable = new Hashtable();
+
+	public int maxNumberOfColors = (int)Mathf.Pow(255, 3);
 	// Use this for initialization
 	public double TestLength = 550.0f;
-	float StartTime = 0.0f;
-	void Start ()
+	public int numberOfSkipedColors;
+	public Color32 TestColor;
+	void Start()
 	{
-		StartTime = Time.time;
-		//Vector3 vec = convert_wave_length_nm_to_rgb(TestLength);
-		//Debug.Log("Red " + vec.x + "Green " + vec.y + "Blue " + vec.z);
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		for(int i = 400 ; i <= 700; ++i)
-		{
-			convert_wave_length_nm_to_rgb(i);
-			if(i == 700)
-			{	float End = Time.time;
-				Debug.Log(((End - StartTime) * 1920 * 1080) / 1000.0f );
-				StartTime = End;
-			}
-		}
+		Vector3 VecColor = new Vector3(TestColor.r, TestColor.g, TestColor.b);  //convert_wave_length_nm_to_rgb(TestLength);
+
+		//double Wave = ApproxColorToWave(ref VecColor);
 		
+		Debug.Log("Approx Wave " + ApproxColorToWave(ref VecColor));
 	}
 
+	// Update is called once per frame
+	void Update()
+	{
+	}
+
+	void GenerateColorDictionary()
+	{
+		Vector3 CurrentColor = new Vector3(numberOfSkipedColors, numberOfSkipedColors, numberOfSkipedColors);
+		for (int i = 0; i < maxNumberOfColors / numberOfSkipedColors; i++)
+		{
+			float fi = (float)i + 1;
+			Vector3[] ArrayOfVec = new Vector3[7];
+			ArrayOfVec[0] = Vector3.Scale(CurrentColor, new Vector3(fi, 0.0f, 0.0f));
+			ArrayOfVec[1] = Vector3.Scale(CurrentColor, new Vector3(0.0f, fi, 0.0f));
+			ArrayOfVec[2] = Vector3.Scale(CurrentColor, new Vector3(0.0f, 0.0f, fi));
+			ArrayOfVec[3] = Vector3.Scale(CurrentColor, new Vector3(fi, fi, 0.0f));
+			ArrayOfVec[4] = Vector3.Scale(CurrentColor, new Vector3(fi, 0.0f, fi));
+			ArrayOfVec[5] = Vector3.Scale(CurrentColor, new Vector3(0.0f, fi, fi));
+			ArrayOfVec[6] = Vector3.Scale(CurrentColor, new Vector3(fi, fi, fi));
+
+			for (int Index = 0; Index < 7; ++Index)
+			{
+				int Hash = Mathf.FloorToInt((2 * ArrayOfVec[Index].x) + (4 * ArrayOfVec[Index].y) + (8 * ArrayOfVec[Index].z));
+				colorTable.Add(Hash, ApproxColorToWave(ref ArrayOfVec[Index]));
+			}
+		}
+	}
+
+	double ApproxColorToWave(ref Vector3 inColor)
+	{
+		float CurrentMin = 600000; // max enough
+		double ReturnWave = 0;
+		for (int Wave = 400; Wave <= 700; ++Wave)
+		{
+			Vector3 color = convert_wave_length_nm_to_rgb(Wave);
+			float a = Mathf.Abs(inColor.x - color.x);
+			float b = Mathf.Abs(inColor.y - color.y);
+			float c = Mathf.Abs(inColor.z - color.z);
+
+			float min = a + b + c;
+
+			if (min < CurrentMin)
+			{
+				ReturnWave = Wave;
+				CurrentMin = min;
+			}
+		}
+		return ReturnWave;
+	}
 Vector3 convert_wave_length_nm_to_rgb(double wave_length_nm)
 {
    // Credits: Dan Bruton http://www.physics.sfasu.edu/astro/color.html
