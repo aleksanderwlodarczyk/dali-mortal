@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class AsteroidsSpawner : MonoBehaviour {
 
@@ -9,11 +10,11 @@ public class AsteroidsSpawner : MonoBehaviour {
 	public float maxXdelta;
 	public float maxYdelta;
 
-	private Vector3 startLocalPosition;
+	private  Vector3 startLocalPosition;
 	void Start () {
 		startLocalPosition = gameObject.transform.localPosition;
+
 	}
-	
 	
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.K))
