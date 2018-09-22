@@ -20,8 +20,11 @@ public class ColorShiftScript2 : MonoBehaviour
 
 	public int tries = 0;
 
-	public Material testMat;
+	//public Material testMat;
 	public ColorHashTable colorHashTablePrefab;
+	[Range(1, 3)]
+	public float testVelocity = 1.5f;
+	public List<Material> allMaterials = new List<Material>();
 
 	void Start()
 	{
@@ -29,9 +32,12 @@ public class ColorShiftScript2 : MonoBehaviour
 		
 		if (colorHashTablePrefab)
 		{
+			//saving
 			//GenerateColorDictionary();
 			//colorHashTablePrefab.colorHashtable = colorTable;
 			//colorHashTablePrefab.Serialize();
+
+			//loading
 			colorHashTablePrefab.Deserialize();
 			colorTable = colorHashTablePrefab.colorHashtable;
 		}
@@ -41,24 +47,57 @@ public class ColorShiftScript2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		
 	}
 
-	private void OnRenderImage(RenderTexture source, RenderTexture destination)
+	public void SetMaterialsColors()
 	{
-		//Texture TempTexture = source;
-		//source.colorBuffer
-		//TempTexture.
-		//testMat.SetFloat("playerSpeed", player.currentVelocity);
-		//Graphics.Blit(source, destination, testMat);
-		//testMat.SetMatrix(Array"ColorHashTable", );
-		List<Vector4> list = new List<Vector4>();
-		ConvertHashtableToVectorArray(ref list);
+		foreach(Material mat in allMaterials)
+		{
+			//mat.color
+			Vector3 colorVec = new Vector3(mat.color.r, mat.color.g, mat.color.b);
+			double sourceWave = ApproxColorToWave(ref colorVec);
 
-		//Shader.SetGlobalVectorArray(1, list);
+			double observeWave = sourceWave * Mathf.Sqrt( (1 + (testVelocity/3f)) / (1 - (testVelocity / 3f)));
+			observeWave = Mathf.CeilToInt((float)observeWave);
+			string colorString = "";
 
-		//testMat.shader
-		//Graphics.Blit(source, destination, testMat);//delete it later
+			foreach(DictionaryEntry de in colorTable)
+			{
+				if(double.Parse(de.Value.ToString()) == observeWave)
+				{
+					colorString = de.Key.ToString();
+				}
+			}
+
+			float r = float.Parse(colorString.Substring(0, 3));
+			float g = float.Parse(colorString.Substring(2, 3));
+			float b = float.Parse(colorString.Substring(5, 3));
+
+
+
+			Color newColor = new Color()
+		}
 	}
+
+	//private void OnRenderImage(RenderTexture source, RenderTexture destination)
+	//{
+	//	//Texture TempTexture = source;
+	//	//source.colorBuffer
+	//	//TempTexture.
+	//	//testMat.SetFloat("playerSpeed", player.currentVelocity);
+	//	//Graphics.Blit(source, destination, testMat);
+	//	//testMat.SetMatrix(Array"ColorHashTable", );
+	//	List<Vector4> list = new List<Vector4>();
+	//	ConvertHashtableToVectorArray(ref list);
+
+	//	//Shader.SetGlobalVectorArray(1, list);
+
+	//	//testMat.shader
+	//	//Graphics.Blit(source, destination, testMat);//delete it later
+	//}
+
+
 
 	void ConvertHashtableToVectorArray(ref List<Vector4> list)
 	{
