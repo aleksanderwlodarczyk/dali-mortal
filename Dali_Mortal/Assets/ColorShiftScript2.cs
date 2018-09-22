@@ -76,7 +76,7 @@ public class ColorShiftScript2 : MonoBehaviour
 
 
 
-			Color newColor = new Color()
+            Color newColor = new Color();
 		}
 	}
 
