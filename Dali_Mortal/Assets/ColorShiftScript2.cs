@@ -16,10 +16,13 @@ public class ColorShiftScript2 : MonoBehaviour
 
 	public Color32 color1;
 	public Color32 color2;
+	public PlayerSpeed player;
 
 	public int tries = 0;
 
+	public Material testMat;
 	public ColorHashTable colorHashTablePrefab;
+
 	void Start()
 	{
 		Vector3 VecColor = new Vector3(TestColor.r, TestColor.g, TestColor.b);
@@ -40,7 +43,10 @@ public class ColorShiftScript2 : MonoBehaviour
 
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		
+		//Texture TempTexture = source;
+		//source.colorBuffer
+		//TempTexture.
+		Graphics.Blit(source, destination, testMat);
 	}
 
 	void GenerateColorDictionary()
