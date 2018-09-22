@@ -27,7 +27,7 @@ public class PlayerSpeed : MonoBehaviour {
 
     void Start()
     {
-        
+        LastPos = transform.position;
         rb = GetComponent<Rigidbody>();
         currentVelocity = defaultSpeed;
         scale = new Vector3(0.5f, 0.5f, -1f);
@@ -38,14 +38,11 @@ public class PlayerSpeed : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-        //currentCameraFOW = (currentVelocity / defaultSpeed) * defaultCameraFOW;
+        rotatePlayerWhileTurning();
 
         currentCameraFOW = 2.33f * currentVelocity + 33.3f;
 
         Camera.main.fieldOfView = currentCameraFOW;
-        // 1/1 * 45 
-        Debug.Log("FOW: " + Camera.main.fieldOfView);
 
         if (Input.GetKey("space"))
         {
@@ -91,7 +88,7 @@ public class PlayerSpeed : MonoBehaviour {
         changeLength();
 
 
-
+        LastPos = transform.position;
 
     }
 
@@ -101,7 +98,28 @@ public class PlayerSpeed : MonoBehaviour {
 
 		currentVelocity = rb.velocity.z;
 
-        Debug.Log("Current velocity is: " + rb.velocity.z);
+    }
+    Vector3 LastPos;
+    void rotatePlayerWhileTurning()
+    {
+        Debug.Log("rotatePlayerWhileTurning()");
+        Quaternion rotationL = Quaternion.Euler(0, 0, 30f);
+        Quaternion rotationR = Quaternion.Euler(0, 0, -30f);
+        Quaternion rotationZero = Quaternion.Euler(0, 0, 0);
+        Debug.Log(LastPos.x);
+        if (transform.position.x<LastPos.x)
+        {
+           transform.rotation = Quaternion.Slerp(transform.rotation,rotationL, Time.deltaTime);
+        }
+        else if(transform.position.x > LastPos.x)
+        {
+            
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationR, Time.deltaTime);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotationZero, Time.deltaTime);
+        }
 
     }
 
