@@ -13,7 +13,7 @@ public class PlayerSpeed : MonoBehaviour {
     public Vector3 accVelo = new Vector3(0, 0, 10); 
 
     Rigidbody rb;
-    float currentVelocity;
+    public float currentVelocity;
 
     float defaultPlayerLength;
     float defaultPlayerWidth;
@@ -71,7 +71,7 @@ public class PlayerSpeed : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
 
-        //currentVelocity = rb.velocity.magnitude;
+		currentVelocity = rb.velocity.z;
 
         Debug.Log("Current velocity is: " + rb.velocity.z);
 
