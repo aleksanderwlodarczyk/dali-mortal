@@ -3,8 +3,8 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_PlayerSpeed ("playerSpeed", float2) {}
-		_ColorWaveList ("ColorAndWaveList", Vector4[]) {}
+		//_PlayerSpeed ("playerSpeed", float2) {}
+		_ColorWaveList ("ColorAndWaveList", Vector4[]) {} 
 	}
 	SubShader
 	{
@@ -45,7 +45,7 @@
 			{
 				fixed4 col = tex2D(_MainTex, i.uv); //col to pixel
 				// just invert the colors
-				col.rgb = 1 - col.rgb;
+				col.rgb = (0.5, 0.0, 0.2, 0.3);
 				return col;
 			}
 			ENDCG

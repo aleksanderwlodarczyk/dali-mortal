@@ -54,8 +54,8 @@ public class ColorShiftScript2 : MonoBehaviour
 		List<Vector4> list = new List<Vector4>();
 		ConvertHashtableToVectorArray(ref list);
 
-		//testMat.SetVectorArray("ColorAndWaveList",list.ToArray());
-		//Graphics.Blit(source, destination);//delete it later
+		testMat.SetVectorArray("ColorAndWaveList", list.ToArray());
+		Graphics.Blit(source, destination, testMat);//delete it later
 	}
 
 	void ConvertHashtableToVectorArray(ref List<Vector4> list)
