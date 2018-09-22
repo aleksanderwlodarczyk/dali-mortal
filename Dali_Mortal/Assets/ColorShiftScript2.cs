@@ -22,40 +22,25 @@ public class ColorShiftScript2 : MonoBehaviour
 	public ColorHashTable colorHashTablePrefab;
 	void Start()
 	{
-		Vector3 VecColor = new Vector3(TestColor.r, TestColor.g, TestColor.b);  //convert_wave_length_nm_to_rgb(TestLength);
-
-		//double Wave = ApproxColorToWave(ref VecColor);
-		
-		//Debug.Log("Approx Wave " + ApproxColorToWave(ref VecColor));
+		Vector3 VecColor = new Vector3(TestColor.r, TestColor.g, TestColor.b);
 
 		if (colorHashTablePrefab)
 		{
-			GenerateColorDictionary();
-			colorHashTablePrefab.colorHashtable = colorTable;
+			//GenerateColorDictionary();
+			//colorHashTablePrefab.colorHashtable = colorTable;
+			colorHashTablePrefab.Deserialize();
 		}
-
-		Vector3 color1vec = new Vector3(color1.r, color1.g, color1.b);
-		Vector3 color2vec = new Vector3(color2.r, color2.g, color2.b);
-
-		int[] color1lab = rgb2lab((int)color1vec.x, (int)color1vec.y, (int)color1vec.z);
-		int[] color2lab = rgb2lab((int)color2vec.x, (int)color2vec.y, (int)color2vec.z);
-
-
-
-		int color1LabInt = color1lab[0] * color1lab[1] * color1lab[2];
-		int color2LabInt = color2lab[0] * color2lab[1] * color2lab[2];
-
-		double difference = GetColorDifference(color1lab, color2lab);
-		Debug.Log(color1lab[0] + " " + color1lab[1] + " " + color1lab[2]);
-		Debug.Log(color2lab[0] + " " + color2lab[1] + " " + color2lab[2]);
-
-		Debug.Log(difference);
 
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+	}
+
+	private void OnRenderImage(RenderTexture source, RenderTexture destination)
+	{
+		
 	}
 
 	void GenerateColorDictionary()
