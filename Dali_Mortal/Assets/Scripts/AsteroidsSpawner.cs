@@ -9,14 +9,17 @@ public class AsteroidsSpawner : MonoBehaviour {
 	public Transform placeToSpawn;
 	public float maxXdelta;
 	public float maxYdelta;
+    public float DistanceToSpawn = 50.0f;
+    public int MaxNumberOfAsteroidsInRow = 5;
 
 	private  Vector3 startLocalPosition;
-	void Start () {
+	void Start ()
+    {
 		startLocalPosition = gameObject.transform.localPosition;
-
 	}
 	
-	void Update () {
+	void Update ()
+    {
 		if (Input.GetKeyDown(KeyCode.K))
 		{
 			Debug.Log("Spawning");
@@ -30,9 +33,12 @@ public class AsteroidsSpawner : MonoBehaviour {
 
 	public void Spawn()
 	{
-		RandomPosition();
+		//RandomPosition();
 		GameObject toSpawn = RandomListItem<GameObject>(segments);
-		GameObject spawned = Instantiate(toSpawn, placeToSpawn.position, placeToSpawn.rotation);
+		GameObject spawned = Instantiate(toSpawn, placeToSpawn.position + new Vector3(0.0f, 0.0f, DistanceToSpawn * MaxNumberOfAsteroidsInRow), placeToSpawn.rotation);
+
+        AsteroidsColiderScript ColiderScript = spawned.GetComponent<AsteroidsColiderScript>();
+        ColiderScript.PlayerPawn = gameObject;
 	}
 
 	public T RandomListItem<T>(List<T> list)

@@ -110,7 +110,7 @@ public class PlayerSpeed : MonoBehaviour {
         Quaternion rotationL = Quaternion.Euler(0, 0, 30f);
         Quaternion rotationR = Quaternion.Euler(0, 0, -30f);
         Quaternion rotationZero = Quaternion.Euler(0, 0, 0);
-        Debug.Log(LastPos.x);
+        
         if (transform.position.x<LastPos.x)
         {
            transform.rotation = Quaternion.Slerp(transform.rotation,rotationL, Time.deltaTime);
