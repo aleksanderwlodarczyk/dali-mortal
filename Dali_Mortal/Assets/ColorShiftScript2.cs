@@ -23,10 +23,10 @@ public class ColorShiftScript2 : MonoBehaviour
 
 	//public Material testMat;
 	public ColorHashTable colorHashTablePrefab;
-	[Range(1, 3)]
-	public float testVelocity = 1.5f;
+	[Range(0, 3)]
+	public float testVelocity = 0f;
 	public List<Material> allMaterials = new List<Material>();
-	//public List<double>
+	public List<double> matsWavelength = new List<double>();
 	public Dictionary<Material, Color> startColors = new Dictionary<Material, Color>();
 
 	void Start()
@@ -53,6 +53,8 @@ public class ColorShiftScript2 : MonoBehaviour
 		foreach(Material mat in allMaterials)
 		{
 			startColors.Add(mat, mat.color);
+			Vector3 matColor = new Vector3(mat.color.r, mat.color.g, mat.color.b);
+			matsWavelength.Add(ApproxColorToWave(ref matColor));
 		}
 
 	}
@@ -200,7 +202,7 @@ public class ColorShiftScript2 : MonoBehaviour
 		}
 	}
 
-	double ApproxColorToWave(ref Vector3 inColor)
+	public double ApproxColorToWave(ref Vector3 inColor)
 	{
 		double CurrentMin = 600000d; // max enough
 		double ReturnWave = 0d; double min = 0d;
