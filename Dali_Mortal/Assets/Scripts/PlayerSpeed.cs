@@ -25,6 +25,8 @@ public class PlayerSpeed : MonoBehaviour {
 
     public float minScale = 0.2f;
 
+    public bool isSpaceClicked;
+
     void Start()
     {
         LastPos = transform.position;
@@ -32,6 +34,7 @@ public class PlayerSpeed : MonoBehaviour {
         currentVelocity = defaultSpeed;
         scale = new Vector3(0.5f, 0.5f, -1f);
         currentCameraFOW = defaultCameraFOW;
+        isSpaceClicked = false;
     }
 
 
@@ -46,6 +49,7 @@ public class PlayerSpeed : MonoBehaviour {
 
         if (Input.GetKey("space"))
         {
+            isSpaceClicked = true;
             if (rb.velocity.z <= accVelo.z)
             {
                 Debug.Log("Space");
@@ -65,7 +69,7 @@ public class PlayerSpeed : MonoBehaviour {
         }
         if (!Input.GetKey("space"))
         { //If there's no space pushed
-
+            isSpaceClicked = false;
 
             if (rb.velocity.z > velo.z) //If there's velocity higher than start velocity
             {
