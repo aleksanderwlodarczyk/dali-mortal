@@ -18,7 +18,7 @@ public class ColorShiftScript2 : MonoBehaviour
 	public Color32 color1;
 	public Color32 color2;
 	public PlayerSpeed player;
-
+	public double sourceWave;
 	public int tries = 0;
 
 	//public Material testMat;
@@ -44,7 +44,7 @@ public class ColorShiftScript2 : MonoBehaviour
 			colorHashTablePrefab.Deserialize();
 			colorTable = colorHashTablePrefab.colorHashtable;
 
-			for (int i = 380; i < 780; i++)
+			for (int i = 380; i <= 780; i++)
 			{
 				colorDictionary.Add((double)i, convert_wave_length_nm_to_rgb((double)i));
 			}
@@ -73,27 +73,32 @@ public class ColorShiftScript2 : MonoBehaviour
 			//mat.color
 			
 			Vector3 colorVec = new Vector3(startColors[mat].r, startColors[mat].g, startColors[mat].b);
-			double sourceWave = ApproxColorToWave(ref colorVec);
+			sourceWave = ApproxColorToWave(ref colorVec);
+			double observeWave;
 
             Vector3 colorDelta = colorVec - colorDictionary[sourceWave];
 
-			double observeWave = sourceWave * (1d / (1 + (testVelocity-1)/3d));
-			observeWave = Mathf.CeilToInt((float)observeWave);
-
-
-			if (observeWave < 380) observeWave += 400;
-			else if(observeWave > 780) observeWave -= 400;
-
-			try
+			if (testVelocity >= 1.3)
 			{
-				Vector3 newColor = colorDictionary[observeWave];
-                newColor += colorDelta;
-				Color dopplerColor = new Color(newColor.x / 255f, newColor.y / 255f, newColor.z * 255f, mat.color.a);
-				mat.color = dopplerColor;
-			}
-			catch(KeyNotFoundException e)
-			{
+				observeWave = sourceWave * (1d / (1 + (testVelocity - 1) / 3d));
+				observeWave = Mathf.CeilToInt((float)observeWave);
 
+
+
+				if (observeWave < 380) observeWave += 400;
+				else if (observeWave > 780) observeWave -= 400;
+
+				try
+				{
+					Vector3 newColor = colorDictionary[observeWave];
+					newColor += colorDelta;
+					Color dopplerColor = new Color(newColor.x / 255f, newColor.y / 255f, newColor.z * 255f, mat.color.a);
+					mat.color = dopplerColor;
+				}
+				catch (KeyNotFoundException e)
+				{
+
+				}
 			}
 			//string colorString = "";
 
