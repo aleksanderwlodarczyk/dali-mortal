@@ -78,7 +78,7 @@ public class ColorShiftScript2 : MonoBehaviour
 
             Vector3 colorDelta = colorVec - colorDictionary[sourceWave];
 
-			if (testVelocity >= 1.3)
+			if (testVelocity > 0)
 			{
 				observeWave = sourceWave * (1d / (1 + (testVelocity - 1) / 3d));
 				observeWave = Mathf.CeilToInt((float)observeWave);
