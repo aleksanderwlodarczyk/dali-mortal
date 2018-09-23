@@ -86,7 +86,6 @@ public class ColorShiftScript2 : MonoBehaviour
 			catch(KeyNotFoundException e)
 			{
 
-<<<<<<< HEAD
 			}
 			//string colorString = "";
 
@@ -108,15 +107,7 @@ public class ColorShiftScript2 : MonoBehaviour
 				//Color newColor = new Color(r / 255f, g / 255f, b / 255f, mat.color.a);
 				//mat.color = newColor;
 			//}
-=======
-			float r = float.Parse(colorString.Substring(0, 3));
-			float g = float.Parse(colorString.Substring(2, 3));
-			float b = float.Parse(colorString.Substring(5, 3));
 
-
-
-            Color newColor = new Color();
->>>>>>> d1f56acfd0a089bc2560ab131a9283c34044d6f9
 		}
 	}
 
