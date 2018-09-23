@@ -67,6 +67,7 @@ public class ColorShiftScript2 : MonoBehaviour
 
 	public void SetMaterialsColors()
 	{
+        
 		foreach(Material mat in allMaterials)
 		{
 			//mat.color
@@ -74,7 +75,9 @@ public class ColorShiftScript2 : MonoBehaviour
 			Vector3 colorVec = new Vector3(startColors[mat].r, startColors[mat].g, startColors[mat].b);
 			double sourceWave = ApproxColorToWave(ref colorVec);
 
-			double observeWave = sourceWave * (1d / (1 + testVelocity/3d));
+            Vector3 colorDelta = colorVec - colorDictionary[sourceWave];
+
+			double observeWave = sourceWave * (1d / (1 + (testVelocity-1)/3d));
 			observeWave = Mathf.CeilToInt((float)observeWave);
 
 
@@ -84,6 +87,7 @@ public class ColorShiftScript2 : MonoBehaviour
 			try
 			{
 				Vector3 newColor = colorDictionary[observeWave];
+                newColor += colorDelta;
 				Color dopplerColor = new Color(newColor.x / 255f, newColor.y / 255f, newColor.z * 255f, mat.color.a);
 				mat.color = dopplerColor;
 			}

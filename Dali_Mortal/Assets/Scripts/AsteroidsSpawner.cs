@@ -16,11 +16,13 @@ public class AsteroidsSpawner : MonoBehaviour {
 	void Start ()
     {
 		startLocalPosition = gameObject.transform.localPosition;
-	}
+       
+    }
 	
 	void Update ()
     {
-		if (Input.GetKeyDown(KeyCode.K))
+        placeToSpawn = gameObject.transform;
+        if (Input.GetKeyDown(KeyCode.K))
 		{
 			Debug.Log("Spawning");
 			if (!placeToSpawn)
