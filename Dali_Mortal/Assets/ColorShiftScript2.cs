@@ -26,6 +26,7 @@ public class ColorShiftScript2 : MonoBehaviour
 	[Range(1, 3)]
 	public float testVelocity = 1.5f;
 	public List<Material> allMaterials = new List<Material>();
+	//public List<double>
 	public Dictionary<Material, Color> startColors = new Dictionary<Material, Color>();
 
 	void Start()
@@ -73,6 +74,7 @@ public class ColorShiftScript2 : MonoBehaviour
 
 			double observeWave = sourceWave * (1d / (1 + testVelocity/3d));
 			observeWave = Mathf.CeilToInt((float)observeWave);
+
 
 			if (observeWave < 380) observeWave += 400;
 			else if(observeWave > 780) observeWave -= 400;
