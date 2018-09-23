@@ -28,9 +28,11 @@ public class ColorShiftScript2 : MonoBehaviour
 	public List<Material> allMaterials = new List<Material>();
 	public List<double> matsWavelength = new List<double>();
 	public Dictionary<Material, Color> startColors = new Dictionary<Material, Color>();
+	public bool settingColors;
 
 	void Start()
 	{
+		settingColors = true;
 		Vector3 VecColor = new Vector3(TestColor.r, TestColor.g, TestColor.b);
 		
 		if (colorHashTablePrefab)
@@ -62,7 +64,16 @@ public class ColorShiftScript2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if(settingColors)
 		SetMaterialsColors();
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			foreach(Material mat in allMaterials)
+			{
+				mat.color = startColors[mat];
+			}
+			settingColors = false;
+		}
 	}
 
 	public void SetMaterialsColors()

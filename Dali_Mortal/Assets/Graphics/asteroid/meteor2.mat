@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: meteor2
   m_Shader: {fileID: 47, guid: 0000000000000000f000000000000000, type: 0}
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 6d1d06cf6744e674da53afada5d3f54f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 59fa532fe54eedb4aac8aeb66d7cc952, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -39,11 +39,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3d7b814729465eb4e904a8eacc298a66, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7fc7a5e1e039e1c47915b4e54b29a5e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: bc334086df08ed9448ef1e56d153c9fe, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5a60ded32fdd5ac45988ded5543a7748, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -55,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: f205d6ab883de3c4d8e474277f6b2e0c, type: 3}
+        m_Texture: {fileID: 2800000, guid: bc26882a993653c4f81cede85957d06a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
