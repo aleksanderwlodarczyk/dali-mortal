@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &37910027
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 573971487}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68a7f23643000254dab06f571f6fb350, type: 3}
+  m_IsPrefabAsset: 0
 --- !u!1001 &63577917
 Prefab:
   m_ObjectHideFlags: 0
@@ -164,6 +206,35 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9614e7cfbe9782b45bdf2472f63d93bf, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &573971486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573971487}
+  m_Layer: 0
+  m_Name: Meteor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &573971487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 573971486}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1846302209}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &772088904
 Prefab:
   m_ObjectHideFlags: 0
@@ -208,6 +279,11 @@ Prefab:
       propertyPath: PlayerPawn
       value: 
       objectReference: {fileID: 1782647230}
+    - target: {fileID: 23723000180121460, guid: 5fc9dcfc9ef5a6448aac1acdfe08d511,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d08eb4eadbaed64b852a1a4ba97d1c4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fc9dcfc9ef5a6448aac1acdfe08d511, type: 2}
   m_IsPrefabAsset: 0
@@ -750,3 +826,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1274319432766928, guid: 25876d847256e2642b20539299ee5e6a,
     type: 2}
   m_PrefabInternal: {fileID: 1782647229}
+--- !u!1 &1846302208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 68a7f23643000254dab06f571f6fb350,
+    type: 3}
+  m_PrefabInternal: {fileID: 37910027}
+--- !u!4 &1846302209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 68a7f23643000254dab06f571f6fb350,
+    type: 3}
+  m_PrefabInternal: {fileID: 37910027}
+--- !u!114 &1846302210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1846302208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a02b1aa24658347a8c43226ae20aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.1
+  minVelo: 0.7
+  maxVelo: 1.3
