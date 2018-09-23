@@ -7,6 +7,7 @@ public class ColorShiftScript2 : MonoBehaviour
 {
 
 	public Hashtable colorTable = new Hashtable();
+	public Dictionary<double, Vector3> colorDictionary = new Dictionary<double, Vector3>();
 
 	public int maxNumberOfColors = (int)Mathf.Pow(255, 3);
 	// Use this for initialization
@@ -25,6 +26,7 @@ public class ColorShiftScript2 : MonoBehaviour
 	[Range(1, 3)]
 	public float testVelocity = 1.5f;
 	public List<Material> allMaterials = new List<Material>();
+	public Dictionary<Material, Color> startColors = new Dictionary<Material, Color>();
 
 	void Start()
 	{
@@ -40,6 +42,16 @@ public class ColorShiftScript2 : MonoBehaviour
 			//loading
 			colorHashTablePrefab.Deserialize();
 			colorTable = colorHashTablePrefab.colorHashtable;
+
+			for (int i = 380; i < 780; i++)
+			{
+				colorDictionary.Add((double)i, convert_wave_length_nm_to_rgb((double)i));
+			}
+		}
+
+		foreach(Material mat in allMaterials)
+		{
+			startColors.Add(mat, mat.color);
 		}
 
 	}
@@ -47,7 +59,7 @@ public class ColorShiftScript2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		
+		SetMaterialsColors();
 	}
 
 	public void SetMaterialsColors()
@@ -55,28 +67,46 @@ public class ColorShiftScript2 : MonoBehaviour
 		foreach(Material mat in allMaterials)
 		{
 			//mat.color
-			Vector3 colorVec = new Vector3(mat.color.r, mat.color.g, mat.color.b);
+			
+			Vector3 colorVec = new Vector3(startColors[mat].r, startColors[mat].g, startColors[mat].b);
 			double sourceWave = ApproxColorToWave(ref colorVec);
 
-			double observeWave = sourceWave * Mathf.Sqrt( (1 + (testVelocity/3f)) / (1 - (testVelocity / 3f)));
+			double observeWave = sourceWave * (1d / (1 + testVelocity/3d));
 			observeWave = Mathf.CeilToInt((float)observeWave);
-			string colorString = "";
 
-			foreach(DictionaryEntry de in colorTable)
+			if (observeWave < 380) observeWave += 400;
+			else if(observeWave > 780) observeWave -= 400;
+
+			try
 			{
-				if(double.Parse(de.Value.ToString()) == observeWave)
-				{
-					colorString = de.Key.ToString();
-				}
+				Vector3 newColor = colorDictionary[observeWave];
+				Color dopplerColor = new Color(newColor.x / 255f, newColor.y / 255f, newColor.z * 255f, mat.color.a);
+				mat.color = dopplerColor;
 			}
+			catch(KeyNotFoundException e)
+			{
 
-			float r = float.Parse(colorString.Substring(0, 3));
-			float g = float.Parse(colorString.Substring(2, 3));
-			float b = float.Parse(colorString.Substring(5, 3));
+			}
+			//string colorString = "";
+
+			//if (colorDictionary.ContainsKey(observeWave))
+			//{
+			//	colorString = colorDictionary[observeWave];
+
+			//	float r = 0;
+			//	float g = 0;
+			//	float b = 0;
+			//	if (colorString != "")
+			//	{
+			//		r = float.Parse(colorString.Substring(0, 3));
+			//		g = float.Parse(colorString.Substring(2, 3));
+			//		b = float.Parse(colorString.Substring(5, 3));
+			//	}
 
 
-
-			Color newColor = new Color()
+				//Color newColor = new Color(r / 255f, g / 255f, b / 255f, mat.color.a);
+				//mat.color = newColor;
+			//}
 		}
 	}
 
